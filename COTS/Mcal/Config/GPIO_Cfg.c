@@ -25,10 +25,10 @@
  *********************************************************************************************************************/
 Port_ConfigType PortConfig[] = 
 							{
-								{Dio_PortA_PA0, Port_PinMode_GPIO, 0, Port_PinDir_Input, Port_PinAttach_PD, 0},
-								{Dio_PortA_PA1, Port_PinMode_GPIO, 0, Port_PinDir_Input, Port_PinAttach_PD, 0},
-								{Dio_PortA_PA2, Port_PinMode_GPIO, 0, Port_PinDir_Input, Port_PinAttach_PD, 0},
-								{Dio_PortA_PA3, Port_PinMode_GPIO, 0, Port_PinDir_Input, Port_PinAttach_PD, 0},
+								{Dio_PortA_PA0, Port_PinMode_GPIO, 0, Port_PinDir_Output, Port_PinAttach_OD, Port_PinOutCurrent_4mA},
+								{Dio_PortA_PA1, Port_PinMode_GPIO, 0, Port_PinDir_Output, Port_PinAttach_OD, Port_PinOutCurrent_4mA},
+								{Dio_PortA_PA2, Port_PinMode_GPIO, 0, Port_PinDir_Output, Port_PinAttach_OD, Port_PinOutCurrent_4mA},
+								{Dio_PortA_PA3, Port_PinMode_GPIO, 0, Port_PinDir_Output, Port_PinAttach_OD, Port_PinOutCurrent_4mA},
 								{Dio_PortA_PA4, Port_PinMode_GPIO, 0, Port_PinDir_Output, Port_PinAttach_OD, Port_PinOutCurrent_4mA},
 								{Dio_PortA_PA5, Port_PinMode_GPIO, 0, Port_PinDir_Output, Port_PinAttach_OD, Port_PinOutCurrent_4mA},
 								{Dio_PortA_PA6, Port_PinMode_GPIO, 0, Port_PinDir_Output, Port_PinAttach_OD, Port_PinOutCurrent_4mA},
@@ -68,11 +68,11 @@ Port_ConfigType PortConfig[] =
 								{Dio_PortE_PE4, Port_PinMode_GPIO, 0, Port_PinDir_Output, Port_PinAttach_OD, Port_PinOutCurrent_4mA},
 								{Dio_PortE_PE5, Port_PinMode_GPIO, 0, Port_PinDir_Output, Port_PinAttach_OD, Port_PinOutCurrent_4mA},
 																
-								{Dio_PortF_PF0, Port_PinMode_GPIO, 0, Port_PinDir_Output, Port_PinAttach_OD, Port_PinOutCurrent_4mA},
+								{Dio_PortF_PF0, Port_PinMode_GPIO, 0, Port_PinDir_Input, Port_PinAttach_PD, 0},
 								{Dio_PortF_PF1, Port_PinMode_GPIO, 0, Port_PinDir_Output, Port_PinAttach_OD, Port_PinOutCurrent_4mA},
 								{Dio_PortF_PF2, Port_PinMode_GPIO, 0, Port_PinDir_Output, Port_PinAttach_OD, Port_PinOutCurrent_4mA},
 								{Dio_PortF_PF3, Port_PinMode_GPIO, 0, Port_PinDir_Output, Port_PinAttach_OD, Port_PinOutCurrent_4mA},
-								{Dio_PortF_PF4, Port_PinMode_GPIO, 0, Port_PinDir_Output, Port_PinAttach_OD, Port_PinOutCurrent_4mA},
+								{Dio_PortF_PF4, Port_PinMode_GPIO, 0, Port_PinDir_Input, Port_PinAttach_PD, 0},
 							};
 
 

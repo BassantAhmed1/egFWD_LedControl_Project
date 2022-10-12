@@ -15,62 +15,51 @@
 #include "../Mcal/Inc/TM4c123GH6PM_SysTick.h"
 #include "../Hal/LED.h"
 
-
+uint8 count_on =0,count_off =0 , SW1_pressed =0 , SW2_pressed =0;
 void HW_Init (void);
 
 int main(void)
 {
 	HW_Init ();
-	int count_on =0,count_off =0 , pressed =0;
+	
 	while(1)
 	{
-		//Pressing PA0 means that every press on PA1 is a count
-		//after releasing PA0 Led_On time will be number of counts *100 ms
-		while (Dio_ReadChannel (Dio_PortA_PA0))
-		{
-				if(Dio_ReadChannel (Dio_PortA_PA1) && (!pressed))
-				{
-					count_on ++;  //number of counts represents time in 100 ms 
-					pressed = 1;
-				}
-				if(!Dio_ReadChannel (Dio_PortA_PA1))
-					pressed= 0;
-		}
-		pressed= 0;
+		//SW1 --> PF4
+		//SW2 --> PF0
+		// initially on time is 100 ms and off time is 100 ms
 		
-		//Pressing PA2 means that every press on PA3 is a count
-		//after releasing PA2 Led_Off time will be number of counts *100 ms
-		while (Dio_ReadChannel (Dio_PortA_PA2))
+		//every press on SW1 gets on time to increase by 100 ms and decreasing off time by 100 ms
+		//if number of counts = 0 then pressing on the switch do nothing
+		if (Dio_ReadChannel (Dio_PortF_PF4) && (!SW1_pressed))
 		{
-				if(Dio_ReadChannel (Dio_PortA_PA3) && (!pressed))
-				{
-					count_off ++;  //number of counts represents time in 100 ms 
-					pressed = 1;
-				}
-				if(!Dio_ReadChannel (Dio_PortA_PA3))
-					pressed= 0;
+			if (((count_on <= 10)) )
+				count_on ++;  //number of counts represents time in 100 ms 
+				
+			if (((count_off >0)) )
+				count_off --;  //number of counts represents time in 100 ms
+			
+			SW1_pressed = 1;
 		}
-		pressed= 0;
-		//after adjusting the on and off time, pressing on PB0 starts the led periods 
-		//and after releasing PB0 it starts to take the counts again from the user
-		if (count_on && count_off)
+		if(!Dio_ReadChannel (Dio_PortF_PF4))
+					SW1_pressed= 0;
+				
+	
+		if (Dio_ReadChannel (Dio_PortF_PF0) && (!SW2_pressed))
 		{
-			if(Dio_ReadChannel (Dio_PortB_PB0) && (!pressed))
-			{
-				pressed = 1;
-				while (Dio_ReadChannel (Dio_PortB_PB0))
-					LedOnPWM_Period((uint32)(count_on * 100) , (uint32)(count_off * 100));
-			}
-			if(!Dio_ReadChannel (Dio_PortA_PA3) && pressed)
-			{
-				pressed= 0;
-				count_on =0;
-				count_off =0;
-			}
+			if (((count_on > 0)) )
+				count_on --;  //number of counts represents time in 100 ms 
+				
+			if (( (count_off <= 10)) )
+				count_off ++;  //number of counts represents time in 100 ms
+			
+			SW2_pressed = 1;
 		}
+		if(!Dio_ReadChannel (Dio_PortF_PF0))
+					SW2_pressed= 0;
+		
+		LedOnPWM_Period((uint32)(100 + count_on * 100) , (uint32)(100 + count_off * 100));
 	}
 }
-
 
 void HW_Init (void)
 {

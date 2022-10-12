@@ -150,7 +150,10 @@ void port_init (void)
 		else if (Portx == GPIOF_Base)
 			{GPIOF_CLK_EN();}
 
-
+		//enabling GPIOCR
+			*((uint32 *)(Portx + GPIOLOCK_offset)) = 0x4C4F434B;
+			
+			Set_bit_GPIO(Portx ,Pinx , GPIOCR_offset);
 
 		//Set the direction of the GPIO port pins by programming the GPIODIR register.
 		if (PortConfig[i].PortPinDirection == Port_PinDir_Input)

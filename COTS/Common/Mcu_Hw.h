@@ -313,7 +313,7 @@ typedef union
 #define GPIOC_Base						0x4005A000UL
 #define GPIOD_Base						0x4005B000UL
 #define GPIOE_Base						0x4005C000UL
-#define GPIOF_Base						0x4005D000UL
+#define GPIOF_Base						0x40025000UL
 
 #define GPIODATA_offset					0x000
 #define GPIODIR_offset					0x400
@@ -330,6 +330,7 @@ typedef union
 #define GPIOSLR_offset					0x518
 #define GPIODEN_offset					0x51C
 #define GPIOLOCK_offset					0x520
+#define GPIOCR_offset						0x524
 #define GPIOAMSEL_offset				0x528
 #define GPIOPCTL_offset					0x52C
 #define GPIOADCCTL_offset				0x530
